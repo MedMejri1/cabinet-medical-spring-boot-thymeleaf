@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="/fragments/head.html :: head">
+</head>
+
+<body class="index-page bg-gray-200">
+
+<!-- ======= Header ======= -->
+<div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
+    <nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid px-0">
+            <a class="navbar-brand font-weight-bolder ms-sm-3" href="index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+                MediServe | Admin
+            </a>
+            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+            </button>
+            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/admin}"  aria-expanded="false">
+                            Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/rdv}"  aria-expanded="false">
+                            Rendez-vous
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/patients}"  aria-expanded="false">
+                            Patient
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/medecins}" aria-expanded="false">
+                            Medecin
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"  aria-expanded="false">
+                            Medicament
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"  aria-expanded="false">
+
+                        </a>
+                    </li>
+                    <li class="nav-item my-auto ms-3 ms-lg-0">
+
+                        <span class="badge bg-gradient-info">Bonjour Admin</span>
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+</div></div></div>
+
+<!-- End Header -->
+
+<header class="header-2">
+    <div class="page-header min-vh-75 relative" style="background-image: url('static/assets/img/bg2.jpg')">
+        <span class="mask bg-gradient-dark opacity-4"></span>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 text-center mx-auto">
+                    <h1 class="text-white pt-3 mt-n5">Espace Admin</h1>
+                    <div class="container py-6 mt-2">
+                        <div class="row">
+
+
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item text-dark opacity-5"><a href="javascript">Home</a></li>
+                                    <li class="breadcrumb-item text-dark opacity-5"><a href="javascript">Espace Admin</a></li>
+                                    <li class="breadcrumb-item text-dark active" aria-current="page" th:if="${rdv.id == null}">
+                                        Ajouter RDV
+                                    </li>
+                                    <li class="breadcrumb-item text-dark active" aria-current="page" th:unless="${rdv.id == null}">
+                                        Modification RDV
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+
+    <div class="col container">
+        <div class="alert alert-success text-white font-weight-bold" role="alert" th:if="${rdv.id == null}">
+            Ajout RDV
+        </div>
+        <div class="alert alert-warning text-white font-weight-bold" role="alert" th:unless="${rdv.id == null}">
+            Modification RDV
+        </div>
+    </div>
+
+    <form th:action="@{/rdv/save}" th:object="${rdv}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group input-group-static my-3">
+                    <label >Nom</label>
+                    <input type="text" class="form-control" th:field="*{nom}">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="input-group input-group-static my-3">
+                    <label>Prenom</label>
+                    <input type="text" class="form-control" th:field="*{prenom}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group input-group-static my-3">
+                    <label>Tel</label>
+                    <input type="number" class="form-control" th:field="*{tel}">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="input-group input-group-static my-3">
+                    <label >Date:</label>
+                    <input type="datetime-local" class="form-control" th:field="*{data}">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="input-group input-group-static my-3">
+                <label >Medecin</label>
+                <input type="text" class="form-control" th:field="*{medecin}">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <button type="submit" class="btn bg-gradient-success">Envoyer</button>
+        </div>
+
+    </form>
+
+ <div th:replace="/fragments/footer.html :: footer"></div>
+    <div th:replace="/fragments/script.html :: script"></div>
+
+
+</div>
+
+
+</body>
+
+</html>

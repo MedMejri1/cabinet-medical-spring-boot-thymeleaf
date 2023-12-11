@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="/fragments/head.html :: head">
+</head>
+
+<body class="index-page bg-gray-200">
+
+<!-- ======= Header ======= -->
+<div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
+    <nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid px-0">
+            <a class="navbar-brand font-weight-bolder ms-sm-3" href="index.html" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+                MediServe | Admin
+            </a>
+            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+            </button>
+            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"  th:href="@{/admin}"  aria-expanded="false">
+                            Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/rdv}"  aria-expanded="false">
+                            Rendez-vous
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/patients}"  aria-expanded="false">
+                            Patient
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/medecins}" aria-expanded="false">
+                            Medecin
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" th:href="@{/medicaments}" aria-expanded="false">
+                            Medicament
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-hover mx-2">
+                        <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"  aria-expanded="false">
+
+                        </a>
+                    </li>
+                    <li class="nav-item my-auto ms-3 ms-lg-0">
+
+                        <span class="badge bg-gradient-info">Bonjour Admin</span>
+
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+</div></div></div>
+
+<header class="header-2">
+    <div class="page-header min-vh-75 relative" style="background-image: url('./assets/img/bg2.jpg')">
+        <span class="mask bg-gradient-dark opacity-4"></span>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 text-center mx-auto">
+                    <h1 class="text-white pt-3 mt-n5">Espace Admin</h1>
+                    <div class="container py-6 mt-2">
+                        <div class="row">
+
+
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item text-dark opacity-5"><a href="javascript">Home</a></li>
+                                    <li class="breadcrumb-item text-dark opacity-5"><a href="javascript">Espace Admin</a></li>
+                                    <li class="breadcrumb-item text-dark active" aria-current="page">Patient</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+
+    <div class="col container">
+        <a th:href="@{/patients/new}" class="btn bg-gradient-success w-auto me-2">Ajouter Patient</a>
+    </div>
+
+
+    <div class="card container">
+        <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+                <thead>
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nom et prenom</th>
+                    <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Adresse</th>
+                    <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tel</th>
+                    <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">E-mail</th>
+                    <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr:block th:each="patient : ${patients}" >
+
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">[[${patient.id}]]</p>
+
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">[[${patient.nom}]]</p>
+                        <p class="text-xs text-secondary mb-0">[[${patient.prenom}]]</p>
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">[[${patient.adresse}]]</p>
+
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">[[${patient.tel}]]</p>
+
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">[[${patient.email}]]</p>
+                    </td>
+
+
+
+                    <td>
+                        <a type="button" class="btn bg-gradient-warning  btn-sm me-2" th:href="@{'/patients/edit/' + ${patient.id}}">
+                        <i class="bi bi-pen btn-sm">Edit</i></a> &nbsp;&nbsp;
+                        <a type="button" class="btn bg-gradient-danger  btn-sm me-2" th:href="@{'/patients/delete/' + ${patient.id}}">
+                            <i class="bi bi-trash">Delete</i></a>
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section><!-- End Hero -->
+
+
+</div>
+
+<div th:replace="/fragments/script.html :: script"></div>
+
+<div th:replace="/fragments/footer.html :: footer"></div>
+
+</body>
+
+</html>
+
